@@ -21,15 +21,42 @@ Utils.StringUtils = (function () {
     if (typeof str === 'number') {
       return true;
     }
-    if (typeof str !== 'string') {
+    if (!isString(str)) {
       return false;
     }
     return /^-?\d+\.?\d+?$/.test(str);
   };
 
+  var contains = function (source, substring) {
+    if (!isString(source)) {
+      throw new Error("Source is not a string");
+    }
+    if (!isString(substring)) {
+      throw new Error("Substring is not a string");
+    }
+    return source.indexOf(substring) != -1;
+  };
+
+  var starts = function (source, starts) {
+    if (!isString(source)) {
+      throw new Error("Source is not a string");
+    }
+    if (!isString(starts)) {
+      throw new Error("Substring is not a string");
+    }
+
+    return source.indexOf(starts) == 0;
+  };
+
+  var isString = function (str) {
+    return typeof str === 'string';
+  };
+
   return {
     isEmpty: isEmpty,
     isNonEmpty: isNonEmpty,
-    isDigit: isDigit
+    isDigit: isDigit,
+    contains: contains,
+    starts: starts,
   }
 })();

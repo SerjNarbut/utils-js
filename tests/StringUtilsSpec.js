@@ -122,3 +122,43 @@ describe('StringUtils.isDigit', function () {
     return expect(Utils.StringUtils.isDigit([])).toBe(false);
   });
 });
+
+describe('StringUtils.contains', function () {
+  it('should throw error for non-string source', function () {
+    expect(function () {
+      Utils.StringUtils.contains(10, "test")
+    }).toThrow(new Error('Source is not a string'));
+  });
+  it('should throw error for non-string substring', function () {
+    expect(function () {
+      Utils.StringUtils.contains("test", [])
+    }).toThrow(new Error('Substring is not a string'));
+  });
+
+  it('should find substring in string', function () {
+    expect(Utils.StringUtils.contains("Some string for testing", "e str")).toBe(true);
+  });
+  it('should not find substring in string', function () {
+    expect(Utils.StringUtils.contains("Some string for testing", "none")).toBe(false);
+  })
+});
+
+describe('StringUtils.starts', function () {
+  it('should throw error for non-string source', function () {
+    expect(function () {
+      Utils.StringUtils.starts(10, "test")
+    }).toThrow(new Error('Source is not a string'));
+  });
+  it('should throw error for non-string substring', function () {
+    expect(function () {
+      Utils.StringUtils.starts("test", [])
+    }).toThrow(new Error('Substring is not a string'));
+  });
+
+  it('should find substring in starts of string', function () {
+    expect(Utils.StringUtils.starts("Some string for testing", "Some")).toBe(true);
+  });
+  it('should not find substring in starts string', function () {
+    expect(Utils.StringUtils.starts("Some string for testing", "string")).toBe(false);
+  })
+});
