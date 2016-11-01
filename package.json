@@ -2,10 +2,11 @@
   "name": "utils-js",
   "version": "1.0.0",
   "description": "Trivial util methods for javascript",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SerjNarbut/utils-js"
   },
+  "main": "index.js",
   "author": "Serj Narbut",
   "license": "MIT",
   "devDependencies": {
