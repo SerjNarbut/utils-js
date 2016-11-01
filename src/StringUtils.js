@@ -10,7 +10,12 @@ Utils.StringUtils = (function () {
       || str.toString().trim().length === 0;
   };
 
+  var isNonEmpty = function (str) {
+    return !isEmpty(str);
+  };
+
   return {
-    isEmpty: isEmpty
+    isEmpty: isEmpty,
+    isNonEmpty: isNonEmpty
   }
 })();
