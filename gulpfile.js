@@ -17,3 +17,5 @@ gulp.task('test', ['concat'], function () {
     singleRun: true
   }).start();
 });
+
+gulp.task('default', ['test']);

@@ -6,9 +6,7 @@ branches:
     - master
 before_install:
   - npm install gulp -g
-install:
-  - npm install
-  - gulp test --verbose
+script: gulp
 cache:
   directories:
   - node_modules
