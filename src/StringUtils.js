@@ -14,8 +14,22 @@ Utils.StringUtils = (function () {
     return !isEmpty(str);
   };
 
+  var isDigit = function (str) {
+    if (typeof str === "undefined" || str == null) {
+      return false;
+    }
+    if (typeof str === 'number') {
+      return true;
+    }
+    if (typeof str !== 'string') {
+      return false;
+    }
+    return /^-?\d+\.?\d+?$/.test(str);
+  };
+
   return {
     isEmpty: isEmpty,
-    isNonEmpty: isNonEmpty
+    isNonEmpty: isNonEmpty,
+    isDigit: isDigit
   }
 })();
