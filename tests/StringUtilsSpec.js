@@ -149,16 +149,36 @@ describe('StringUtils.starts', function () {
       Utils.StringUtils.starts(10, "test")
     }).toThrow(new Error('Source is not a string'));
   });
-  it('should throw error for non-string substring', function () {
+  it('should throw error for non-string prefix', function () {
     expect(function () {
       Utils.StringUtils.starts("test", [])
-    }).toThrow(new Error('Substring is not a string'));
+    }).toThrow(new Error('Prefix is not a string'));
   });
 
-  it('should find substring in starts of string', function () {
+  it('should find prefix in start of string', function () {
     expect(Utils.StringUtils.starts("Some string for testing", "Some")).toBe(true);
   });
-  it('should not find substring in starts string', function () {
+  it('should not find prefix in starts string', function () {
     expect(Utils.StringUtils.starts("Some string for testing", "string")).toBe(false);
+  })
+});
+
+describe('StringUtils.ends', function () {
+  it('should throw error for non-string source', function () {
+    expect(function () {
+      Utils.StringUtils.ends(10, "test")
+    }).toThrow(new Error('Source is not a string'));
+  });
+  it('should throw error for non-string suffix', function () {
+    expect(function () {
+      Utils.StringUtils.ends("test", [])
+    }).toThrow(new Error('Suffix is not a string'));
+  });
+
+  it('should find suffix in end of string', function () {
+    expect(Utils.StringUtils.ends("Some string for testing", "testing")).toBe(true);
+  });
+  it('should not find suffix in end string', function () {
+    expect(Utils.StringUtils.ends("Some string for testing", "string")).toBe(false);
   })
 });

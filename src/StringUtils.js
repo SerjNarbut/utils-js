@@ -37,15 +37,28 @@ Utils.StringUtils = (function () {
     return source.indexOf(substring) != -1;
   };
 
-  var starts = function (source, starts) {
+  var starts = function (source, prefix) {
     if (!isString(source)) {
       throw new Error("Source is not a string");
     }
-    if (!isString(starts)) {
-      throw new Error("Substring is not a string");
+    if (!isString(prefix)) {
+      throw new Error("Prefix is not a string");
     }
+    return source.indexOf(prefix) == 0;
+  };
 
-    return source.indexOf(starts) == 0;
+  var ends = function (source, suffix) {
+    if (!isString(source)) {
+      throw new Error("Source is not a string");
+    }
+    if (!isString(suffix)) {
+      throw new Error("Suffix is not a string");
+    }
+    if (source.length < suffix.length) {
+      throw new Error("Suffix length is more than source length");
+    }
+    var expectedPosition = source.length - suffix.length;
+    return source.lastIndexOf(suffix) == expectedPosition;
   };
 
   var isString = function (str) {
@@ -58,5 +71,6 @@ Utils.StringUtils = (function () {
     isDigit: isDigit,
     contains: contains,
     starts: starts,
+    ends: ends
   }
 })();
