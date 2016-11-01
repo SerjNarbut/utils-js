@@ -28,35 +28,21 @@ Utils.StringUtils = (function () {
   };
 
   var contains = function (source, substring) {
-    if (!isString(source)) {
-      throw new Error("Source is not a string");
-    }
-    if (!isString(substring)) {
-      throw new Error("Substring is not a string");
-    }
+    Utils.Preconditions.checkArgument(isString(source), "Source is not a string");
+    Utils.Preconditions.checkArgument(isString(substring), "Substring is not a string");
     return source.indexOf(substring) != -1;
   };
 
   var starts = function (source, prefix) {
-    if (!isString(source)) {
-      throw new Error("Source is not a string");
-    }
-    if (!isString(prefix)) {
-      throw new Error("Prefix is not a string");
-    }
+    Utils.Preconditions.checkArgument(isString(source), "Source is not a string");
+    Utils.Preconditions.checkArgument(isString(prefix), "Prefix is not a string");
     return source.indexOf(prefix) == 0;
   };
 
   var ends = function (source, suffix) {
-    if (!isString(source)) {
-      throw new Error("Source is not a string");
-    }
-    if (!isString(suffix)) {
-      throw new Error("Suffix is not a string");
-    }
-    if (source.length < suffix.length) {
-      throw new Error("Suffix length is more than source length");
-    }
+    Utils.Preconditions.checkArgument(isString(source), "Source is not a string");
+    Utils.Preconditions.checkArgument(isString(suffix), "Suffix is not a string");
+    Utils.Preconditions.checkState(source.length >= suffix.length, "Suffix length is more than source length");
     var expectedPosition = source.length - suffix.length;
     return source.lastIndexOf(suffix) == expectedPosition;
   };
