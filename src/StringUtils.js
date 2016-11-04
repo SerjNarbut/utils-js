@@ -51,12 +51,27 @@ Utils.StringUtils = (function () {
     return typeof str === 'string';
   };
 
+  var hash = function (str) {
+    Utils.Preconditions.checkArgument(isString(str), "Hash can be applicable only for string");
+    var len = str.length;
+    if (len == 0) {
+      return 0;
+    }
+    var hash = 0;
+    for (var i = 0; i < len; i++) {
+      hash = hash * 31 + str.charCodeAt(i);
+      hash |= 0; //to 32 bit int
+    }
+    return hash;
+  };
+
   return {
     isEmpty: isEmpty,
     isNonEmpty: isNonEmpty,
     isDigit: isDigit,
     contains: contains,
     starts: starts,
-    ends: ends
+    ends: ends,
+    hashCode: hash
   }
 })();

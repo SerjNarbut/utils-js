@@ -182,3 +182,41 @@ describe('StringUtils.ends', function () {
     expect(Utils.StringUtils.ends("Some string for testing", "string")).toBe(false);
   })
 });
+
+describe('StringUtils.hashCode', function () {
+  it('should throw error for non-string objects', function () {
+    expect(function () {
+      Utils.StringUtils.hashCode({})
+    }).toThrow(new Error("Hash can be applicable only for string"));
+  });
+  it('should throw error for null objects', function () {
+    expect(function () {
+      Utils.StringUtils.hashCode(null)
+    }).toThrow(new Error("Hash can be applicable only for string"));
+  });
+  it('should throw error for undefined objects', function () {
+    expect(function () {
+      Utils.StringUtils.hashCode(undefined)
+    }).toThrow(new Error("Hash can be applicable only for string"));
+  });
+  it('should return 0 for empty string', function () {
+    expect(Utils.StringUtils.hashCode("")).toBe(0);
+  });
+  it('should return int for non-empty string', function () {
+    expect(Utils.StringUtils.hashCode("test")).toBe(3556498);
+  });
+  it('should return int for non-empty long string', function () {
+    var string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at.";
+    expect(Utils.StringUtils.hashCode(string)).toBe(1477730442);
+  });
+  it('should return equal code for equals string', function () {
+    var string1 = "test";
+    var string2 = "test";
+    expect(Utils.StringUtils.hashCode(string1)).toBe(Utils.StringUtils.hashCode(string2));
+  });
+  it('should return different code for different string', function () {
+    var string1 = "test1";
+    var string2 = "test";
+    expect(Utils.StringUtils.hashCode(string1)).not.toBe(Utils.StringUtils.hashCode(string2));
+  });
+});
