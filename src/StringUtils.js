@@ -5,9 +5,7 @@ var Utils = Utils || {};
 
 Utils.StringUtils = (function () {
   var isEmpty = function (str) {
-    return typeof str == "undefined"
-      || str === null
-      || str.toString().trim().length === 0;
+    return Utils.ObjectUtils.isNullOrUndefined(str) || str.toString().trim().length === 0;
   };
 
   var isNonEmpty = function (str) {
@@ -15,7 +13,7 @@ Utils.StringUtils = (function () {
   };
 
   var isDigit = function (str) {
-    if (typeof str === "undefined" || str == null) {
+    if (Utils.ObjectUtils.isNullOrUndefined(str)) {
       return false;
     }
     if (typeof str === 'number') {
