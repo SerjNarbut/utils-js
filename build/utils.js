@@ -29,13 +29,25 @@ Utils.ObjectUtils = (function () {
     return typeof obj === 'string';
   };
 
+  var getFields = function (obj) {
+    Utils.Preconditions.checkArgument(isObject(obj), "Cannot extract fields names from non object");
+    var result = [];
+    for (var prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        result.push(prop);
+      }
+    }
+    return result;
+  };
+
   return {
     isUndefined: isUndefined,
     isNull: isNull,
     isNullOrUndefined: isNullOrUndefined,
     isObject: isObject,
     isFunction: isFunction,
-    isString: isString
+    isString: isString,
+    getFields: getFields
   }
 })();
 /**

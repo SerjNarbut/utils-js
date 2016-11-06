@@ -67,4 +67,19 @@ describe("ObjectUtils spec", function () {
       expect(Utils.ObjectUtils.isString(null)).toBe(false);
     });
   });
+  describe('getFields', function () {
+    it('should throw error for non-object values', function () {
+      expect(function () {
+        Utils.ObjectUtils.getFields("");
+      }).toThrow(new Error("Cannot extract fields names from non object"));
+      expect(function () {
+        Utils.ObjectUtils.getFields(1);
+      }).toThrow(new Error("Cannot extract fields names from non object"));
+    });
+    it('should be check non undefined values', function () {
+      var obj = {a: 10, b: "some string", "test": []};
+      var fields = ['a', 'b', 'test'];
+      expect(Utils.ObjectUtils.getFields(obj)).toEqual(fields);
+    });
+  });
 });
