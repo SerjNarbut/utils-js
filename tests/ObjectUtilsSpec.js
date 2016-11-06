@@ -82,4 +82,11 @@ describe("ObjectUtils spec", function () {
       expect(Utils.ObjectUtils.getFields(obj)).toEqual(fields);
     });
   });
+  describe('extend', function () {
+    it('should extend objects', function () {
+      var dest = {a: 10, b: 11};
+      var source = {a: 12, c: 10};
+      expect(Utils.ObjectUtils.extend(dest, source)).toEqual({a: 10, b: 11, c: 10});
+    })
+  })
 });

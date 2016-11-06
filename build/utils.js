@@ -40,6 +40,20 @@ Utils.ObjectUtils = (function () {
     return result;
   };
 
+  var extend = function (dest, source) {
+    if (isNullOrUndefined(source)) {
+      return dest;
+    }
+    dest = dest || {};
+    var fields = getFields(source);
+    fields.map(function (value) {
+      if (!isNullOrUndefined(source[value]) && !dest.hasOwnProperty(value)) {
+        dest[value] = source[value];
+      }
+    });
+    return dest;
+  };
+
   return {
     isUndefined: isUndefined,
     isNull: isNull,
@@ -47,7 +61,8 @@ Utils.ObjectUtils = (function () {
     isObject: isObject,
     isFunction: isFunction,
     isString: isString,
-    getFields: getFields
+    getFields: getFields,
+    extend: extend
   }
 })();
 /**
