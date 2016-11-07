@@ -4,8 +4,8 @@
 var Utils = Utils || {};
 
 Utils.DecoratorUtils = (function () {
-  var wrap = function (obj, name, watchFunct) {
-    obj[name] = watchFunct(obj[name]);
+  var wrap = function (obj, name, wrapperFunction) {
+    obj[name] = wrapperFunction(obj[name]);
   };
 
   var after = function (afterFunction) {
