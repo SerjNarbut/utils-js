@@ -4,8 +4,12 @@
 var Utils = Utils || {};
 
 Utils.DecoratorUtils = (function () {
-  var wrap = function (obj, name, watchFunct) {
-    obj[name] = watchFunct(obj[name]);
+  var wrap = function (obj, name, wrapperFunction) {
+    Utils.Preconditions.checkArgument(Utils.ObjectUtils.isObject(obj), "cannot wrap function for non objects");
+    Utils.Preconditions.checkArgument(Utils.ObjectUtils.isString(name), "name of function to wrapping must be string");
+    Utils.Preconditions.checkArgument(Utils.ObjectUtils.isFunction(wrapperFunction), "wrapped function must be function");
+    Utils.Preconditions.checkState(Utils.ObjectUtils.isFunction(obj[name]), "is not a function:'" + name + "'");
+    obj[name] = wrapperFunction(obj[name]);
   };
 
   var after = function (afterFunction) {
