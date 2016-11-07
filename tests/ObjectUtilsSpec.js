@@ -88,5 +88,5 @@ describe("ObjectUtils spec", function () {
       var source = {a: 12, c: 10};
       expect(Utils.ObjectUtils.extend(dest, source)).toEqual({a: 10, b: 11, c: 10});
     })
-  })
+  });
 });
